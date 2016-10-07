@@ -1,0 +1,90 @@
+/*
+   c0d3d by Filip Kälebo
+
+all libs have been patched for arduino uno by me
+orignally written by David A. Mellis
+  Morse.cpp - Library for flashing Morse code.
+  Created by David A. Mellis, November 2, 2007.
+  Released into the public domain.
+
+libs:
+Morse.h:
+------------------------
+#ifndef Morse_h
+#define Morse_h
+
+#include "Arduino.h"
+
+
+class Morse
+{
+  public:
+    Morse(int pin);
+    void dot();
+    void dash();
+  private:
+    int _pin;
+};
+
+#endif
+-----------------
+
+
+Morse.cpp:
+------------------------------------
+#include "Arduino.h"
+
+
+#include "Morse.h"
+
+Morse::Morse(int pin)
+{
+  pinMode(pin, OUTPUT);
+  _pin = pin;
+}
+
+void Morse::dot()
+{
+  digitalWrite(_pin, HIGH);
+  delay(250);
+  digitalWrite(_pin, LOW);
+  delay(250);  
+}
+
+void Morse::dash()
+{
+  digitalWrite(_pin, HIGH);
+  delay(1000);
+  digitalWrite(_pin, LOW);
+  delay(250);
+}
+
+------------------------------------
+
+
+
+
+*/
+#include <Morse.h>
+
+Morse morse(13);
+
+void setup() {
+  // använd lampan på boarden
+  pinMode(LED_BUILTIN, OUTPUT);
+}
+
+void loop() {
+  //skriv filip
+  // das loop
+  morse.dot(); morse.dot(); morse.dash(); morse.dot(); //F
+  delay(700);
+  morse.dot(); morse.dot(); //i
+  delay(700);
+  morse.dot(); morse.dash(); morse.dot(); morse.dot(); //L
+  delay(700);
+  morse.dot(); morse.dot(); //i
+  delay(700);
+  morse.dot(); morse.dash(); morse.dash(); morse.dot(); //P
+  delay(10000);
+}
